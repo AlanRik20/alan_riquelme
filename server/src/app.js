@@ -12,8 +12,9 @@ const app = express();
 app.use(morgan("dev"));
 app.use(
   cors({
-    origin: "http://localhost:8080",
+    origin: ["http://localhost:8080","http://localhost:4321"],
     credentials: true,
+    methods: ["GET", "POST", "PUT", "DELETE"]
   })
 );
 app.use(helmet());
@@ -29,7 +30,7 @@ app.use("/orders", ordersRouter);
 app.use((err, _req, res, _next) => {
   console.error(err);
 
-  res.status(500).json({ message: "Internal server error" });
+  res.status(500).json({ message: "Internal server ayudaa" });
 });
 
 // NO SE DEBE CAMBIAR EL PUERTO

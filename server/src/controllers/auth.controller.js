@@ -24,6 +24,16 @@ export const signInCtrl = async (req, res) => {
 export const signUpCtrl = async (req, res) => {
   try {
     // ! Completar la función signUpCtrl
+    const {username, email, password} = req.body;
+
+    const nuevoUsuario = await createUser(username, email, password);
+
+    if(!nuevoUsuario){
+      return res.status(401).json({message:"no se puede"})
+    }
+   
+
+    return res.status(200).json({message:"usuario creado"})
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
